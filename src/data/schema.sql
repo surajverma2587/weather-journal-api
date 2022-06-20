@@ -22,6 +22,6 @@ CREATE TABLE cities (
   windSpeed DECIMAL(8, 2) NOT NULL,
   weatherDescription VARCHAR(255) NOT NULL,
   countryCode VARCHAR(255) NOT NULL,
-  FOREIGN KEY (journalId) REFERENCES journals(id),
+  FOREIGN KEY (journalId) REFERENCES journals(id) CASCADE ON DELETE,
   PRIMARY KEY (id)
 );
