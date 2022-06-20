@@ -46,7 +46,7 @@ const createJournal = async (req, res) => {
       payload.imageUrl,
     ]);
 
-    res.json({
+    return res.json({
       success: true,
     });
   } catch (error) {
@@ -70,7 +70,7 @@ const updateJournal = async (req, res) => {
       id,
     ]);
 
-    res.json({
+    return res.json({
       success: true,
     });
   } catch (error) {
