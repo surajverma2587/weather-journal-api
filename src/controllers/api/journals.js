@@ -59,8 +59,28 @@ const createJournal = async (req, res) => {
   }
 };
 
-const updateJournal = (req, res) => {
-  res.send("updateJournal");
+const updateJournal = async (req, res) => {
+  try {
+    const payload = req.body;
+    const { id } = req.params;
+
+    await req.db.query("UPDATE journals SET title=?, imageUrl=? WHERE id=?", [
+      payload.name,
+      payload.imageUrl,
+      id,
+    ]);
+
+    res.json({
+      success: true,
+    });
+  } catch (error) {
+    console.log(`[ERROR: Failed to update journal | ${error.message}]`);
+
+    return res.status(500).json({
+      success: false,
+      error: "Failed to update journal",
+    });
+  }
 };
 
 const deleteJournal = async (req, res) => {
