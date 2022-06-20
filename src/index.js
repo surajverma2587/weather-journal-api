@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const mysql2 = require("mysql2/promise");
 
@@ -9,13 +11,12 @@ const init = async () => {
     const PORT = process.env.PORT || 4000;
 
     const dbConfig = {
-      host: "localhost",
-      user: "root",
-      password: "password",
-      database: "weather_journal_db",
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
     };
 
-    // connect DB
     const db = await mysql2.createConnection(dbConfig);
 
     const app = express();
